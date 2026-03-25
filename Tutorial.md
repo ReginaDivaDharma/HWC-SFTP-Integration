@@ -112,12 +112,12 @@ Run this from your **local machine** (not ECS):
 
 **Windows:**
 ```bash
-scp C:/Users/yourname/stock_market_data.csv root@<your-ECS-public-IP>:/root/Documents/Folder_SFTP/
+scp C:/Users/yourname/your-file root@<your-ECS-public-IP>:/root/Documents/Folder_SFTP/
 ```
 
 **Linux / Mac:**
 ```bash
-scp /local/path/stock_market_data.csv root@<your-ECS-public-IP>:/root/Documents/Folder_SFTP/
+scp /local/path/your-file root@<your-ECS-public-IP>:/root/Documents/Folder_SFTP/
 ```
 
 ---
