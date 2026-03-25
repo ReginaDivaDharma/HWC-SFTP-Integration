@@ -6,7 +6,7 @@ A step-by-step guide to securely transferring files from a source VM to Huawei C
 
 ## 📖 What is SFTP?
 
-Think of it this way — if you had a confidential document that needed to reach someone on a completely different machine, you wouldn't just send it in the open. You'd want it encrypted and transmitted securely. That's the whole point of SFTP.
+Imagine if you had a confidential document that needed to reach someone on a completely different machine, you wouldn't just send it in the open. You'd want it encrypted and transmitted securely. That's the whole point of SFTP.
 
 **SFTP (Secure File Transfer Protocol)** handles exactly that: safe, encrypted file transfers between two machines over a network. In this guide, we'll walk through how to move data from a Huawei Cloud ECS instance into an OBS bucket in a separate Huawei Cloud environment, with CDM acting as the middleman.
 
@@ -79,14 +79,14 @@ firewall-cmd --reload
 ssh root@<your-ECS-public-IP>
 ```
 
-> ✅ If you can SSH in successfully, SFTP is good to go — same port, same door.
+> ✅ If you can SSH in successfully, SFTP is good to go same port, same door.
 
 > ❓ **Does the destination environment also need port 22 open?**  
 > **No.** CDM only needs port 22 to reach into your *source* and pull the file. It then pushes the data to the destination using its own protocol (e.g., HTTPS for OBS). The destination doesn't need port 22 at all.
 
 ---
 
-### Step 3 — Create an SFTP User on the Source ECS
+### Step 3 Create an SFTP User on the Source ECS
 
 Once you're SSH'd into your ECS, run the following to set up a dedicated SFTP user and an uploads directory:
 
@@ -106,7 +106,7 @@ chown sftpuser:sftpuser /home/sftpuser/uploads
 
 ---
 
-### Step 4 — Transfer Your File to ECS
+### Step 4 Transfer Your File to ECS
 
 From your **local machine** (not from within ECS), push your file over using `scp`:
 
@@ -122,7 +122,7 @@ scp /local/path/your-file root@<your-ECS-public-IP>:/root/Documents/Folder_SFTP/
 
 ---
 
-### Step 5 — Move the File into the SFTP Uploads Folder
+### Step 5 Move the File into the SFTP Uploads Folder
 
 Back inside your **ECS terminal**, copy the file into the uploads directory:
 
@@ -140,7 +140,7 @@ ls -lh /home/sftpuser/uploads/
 
 ---
 
-### Step 6 — Create Links in CDM
+### Step 6 Create Links in CDM
 
 Links are how CDM "recognizes" your source and destination before any data movement happens. Think of them as saved connection profiles — you set them up once, and CDM knows where to reach in and where to push out.
 
@@ -171,7 +171,7 @@ Fill in your bucket name, AK/SK, and give the link any name you like. Test the c
 
 ---
 
-### Step 7 — Create and Run the Migration Job
+### Step 7 Create and Run the Migration Job
 
 With both links in place, it's time to kick off the actual transfer.
 
